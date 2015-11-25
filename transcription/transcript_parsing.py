@@ -28,7 +28,6 @@ def scrape_timestamps(in_file, out_file):
                 # out_file_time.append(line)
 
 
-
 def store_timestamps(timestamps, out):
 	for lines in timestamps:
 		with open(out_file_time, "w") as f:
