@@ -1,12 +1,11 @@
 import os
-# from audiosamples import mp3s
 
-curr_file = 'dracula_transcription.txt'
 output_file_trns = 'only_transcript.txt'
 output_file_time = 'only_timestamp.txt'
+folder = 'mp3s'
 
 
-def scrape_text(in_file, out_file):
+def scrape_text(in_file):
 	transcript_lines = []
 	with open(in_file, "r") as f:
 	    for line in f:
@@ -14,7 +13,7 @@ def scrape_text(in_file, out_file):
 	            transcript_lines.append(line)
 	return transcript_lines
 
-def scrape_timestamps(in_file, out_file):
+def scrape_timestamps(in_file):
     timestamp_lines = []
     with open(in_file, "r") as f:
         for line in f:
@@ -24,18 +23,27 @@ def scrape_timestamps(in_file, out_file):
 
 
 def store_timestamps(timestamps, out):
-	with open(output_file_time, "w") as f:
+	with open(out, "w") as f:
 	    for timestamp_lines in timestamps:
 	    	f.write(timestamp_lines)
 
 def store_text(transcript, out):
-	with open(output_file_trns, "w") as f:
+	with open(out, "w") as f:
 		for transcript_lines in transcript:
 			f.write(transcript_lines)
 
+for files in os.listdir(folder):
+	input_file = os.path.join(folder, files)
+	if 'transcription.txt' in files:
+		filestart = os.path.splitext(files)[0]
 
-text_lines = scrape_text(curr_file, output_file_trns)
-time_lines = scrape_timestamps(curr_file, output_file_time)
+		transcript_output = os.path.join(folder, filestart + '_only_transcript.txt')
+		timestamp_output = os.path.join(folder, filestart + '_only_timestamp.txt')
 
-store_text(text_lines, output_file_trns)
-store_timestamps(time_lines, output_file_time)
+		text_lines = scrape_text(input_file)
+		time_lines = scrape_timestamps(input_file)
+
+		store_text(text_lines, transcript_output)
+		store_timestamps(time_lines, timestamp_output)
+	else:
+		pass
