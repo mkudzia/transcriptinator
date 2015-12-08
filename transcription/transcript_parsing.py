@@ -4,6 +4,7 @@ output_file_trns = 'only_transcript.txt'
 output_file_time = 'only_timestamp.txt'
 folder = 'mp3s'
 
+# each file needs a disclaimer regarding variable transcript quality
 
 def scrape_text(in_file):
 	transcript_lines = []
