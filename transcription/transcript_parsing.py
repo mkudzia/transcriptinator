@@ -23,15 +23,21 @@ def scrape_timestamps(in_file):
     return timestamp_lines
 
 
+def store_text(transcript, out):
+	with open(out, "w") as f:
+		for transcript_lines in transcript:
+			f.write(transcript_lines)
+
+
 def store_timestamps(timestamps, out):
 	with open(out, "w") as f:
 	    for timestamp_lines in timestamps:
 	    	f.write(timestamp_lines)
 
-def store_text(transcript, out):
+def store_xml(timestamps, out):
 	with open(out, "w") as f:
-		for transcript_lines in transcript:
-			f.write(transcript_lines)
+		for timestamp_lines in timestamps:
+			f.write(timestamp_lines)
 
 for files in os.listdir(folder):
 	input_file = os.path.join(folder, files)
@@ -47,5 +53,6 @@ for files in os.listdir(folder):
 
 		store_text(text_lines, transcript_output)
 		store_timestamps(time_lines, timestamp_output)
+		store_xml(time_lines, timestamp_xml_out)
 	else:
 		pass
