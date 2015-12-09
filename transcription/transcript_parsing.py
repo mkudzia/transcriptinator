@@ -40,6 +40,7 @@ for files in os.listdir(folder):
 
 		transcript_output = os.path.join(folder, filestart + '_only_transcript.txt')
 		timestamp_output = os.path.join(folder, filestart + '_only_timestamp.txt')
+		timestamp_xml_out = os.path.join(folder, filestart + '_only_timestamp.xml')
 
 		text_lines = scrape_text(input_file)
 		time_lines = scrape_timestamps(input_file)
