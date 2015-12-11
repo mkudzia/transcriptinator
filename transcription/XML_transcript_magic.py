@@ -1,6 +1,5 @@
 # transcription/XML_transcript_magic.py
 
-
 import os
 
 folder = 'mp3s'
@@ -42,6 +41,7 @@ for files in os.listdir(folder):
 
 		xml_output = os.path.join(folder, start_filename + '_transcript.xml')
 
+		# I think this is where I start chaining function calls in reverse order
 		insert_xml_start() # what args does this need?
 
 	else:
