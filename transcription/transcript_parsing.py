@@ -1,3 +1,5 @@
+# transcription/transcript_parsing.py
+
 import os
 
 output_file_trns = 'only_transcript.txt'
