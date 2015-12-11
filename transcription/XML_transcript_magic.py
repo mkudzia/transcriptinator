@@ -29,20 +29,26 @@ def xml_chunks(in_file):
 	with open(in_file, "r") as original:
 		data = original.read()
 	with open(in_file, "w") as chunked:
-		# rewind? index[0]? tell python to start at the beginning of the transcription text
-		# count six lines
-		# insert newline \n
-		# repeat every six lines
+		# rewind? index[0]? split? tell python to start at the beginning of the transcription text
+		count = 0
+		while count < 6:
+			count += 1
+		chunked.write('\n')
+		# repeat every six lines -- for x in range?
 
-for files in os.listdir(folder):
-	input_xml = os.path.join(folder, files)
-	if '.xml' in files:
-		start_filename = os.path.splitext(files)[0]
+# maybe this needs to be its own function as well?
+def find_xml():
+	xml_output = []
+	for files in os.listdir(folder):
+		input_xml = os.path.join(folder, files)
+		if '.xml' in files:
+			start_filename = os.path.splitext(files)[0]
+			xml_output_fn = os.path.join(folder, start_filename + '_transcript.xml')
+			xml_output.append(xml_output_fn)
+		else:
+			pass
+	return xml_output
 
-		xml_output = os.path.join(folder, start_filename + '_transcript.xml')
+# I think this is where I start chaining function calls in reverse order
+insert_xml_start(xml_output)
 
-		# I think this is where I start chaining function calls in reverse order
-		insert_xml_start() # what args does this need?
-
-	else:
-		pass
