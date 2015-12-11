@@ -24,6 +24,9 @@ def insert_disclaimer(in_file):
 		disclaimed.write('<disclaimer>These transcripts were created by a software program; we make no guarantees as to the quality of the output. We know some of the words are incorrect.</disclaimer>' + data)
 	return disclaimed
 
+# this function is to divide the transcript into 6-word chunks to make reading and scrolling easier
+def xml_chunks(in_file):
+
 	for files in os.listdir(folder):
 		input_xml = os.path.join(folder, files)
 		if '.xml' in files:
