@@ -1,8 +1,21 @@
 # transcription/XML_transcript_magic.py
 
-from lxml import etree as etree
 
-# folder = 'mp3s'
+from lxml import etree as etree
+import re
+import os
+
+# this is now wrong because we made subfolders
+folder = 'mp3s'
+
+for files in os.listdir(folder):
+	input_file = os.path.join(folder, files)
+	for eachfile in files:
+		iterator(open(input_file))
+		
+		filestart = os.path.splitext(files)[0]
+		out_file = filestart + 'transcription.xml'
+
 
 def create_root(in_file):
 	root = etree.Element('cues')
@@ -19,12 +32,12 @@ def create_cues(root, beginning, ending, transcript_text):
 	
 	start.text = str(beginning)
 	end.text = str(ending)
-	transcript.text = transcript_text
+	transcript.text = remove_numbers(transcript_text)
 
-# regex to remove (digits):
-# /\W\d+\W/g
+def remove_numbers(text_string):
+	return re.sub(r'\W\d+\W', '', text_string)
 
-def iterator(in_file):
+def iterator(in_file, out_file):
 	root = etree.Element('cues')
 	count = 0
 	start_time = 0
@@ -47,7 +60,7 @@ def iterator(in_file):
 				count += 1
 
 	tree = etree.ElementTree(root)		
-	tree.write('output.xml', pretty_print=True, xml_declaration=True)
+	tree.write(out, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
 # root = create_root('test_xml.xml')
 iterator(open('test_xml.xml'))
