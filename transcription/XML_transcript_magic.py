@@ -1,54 +1,53 @@
 # transcription/XML_transcript_magic.py
 
-import os
+from lxml import etree as etree
 
-folder = 'mp3s'
+# folder = 'mp3s'
 
-# these functions are defined in the order that they need to show up in the result file here
-# they'll be called in the correct order in the for-loop below
+def create_root(in_file):
+	root = etree.Element('cues')
+	disclaimer = etree.SubElement(root, 'disclaimer')
+	disclaimer.text = 'These transcripts were created by a software program; we make no guarantees as to the quality of the output. We know some of the words are incorrect.'
+	return root
 
+# call this inside iterator?
+def create_cues(root, beginning, ending, transcript_text):
+	cue = etree.SubElement(root, 'cue')
+	start = etree.SubElement(cue, 'start')
+	end = etree.SubElement(cue, 'end')
+	transcript = etree.SubElement(cue, 'transcript')
+	
+	start.text = str(beginning)
+	end.text = str(ending)
+	transcript.text = transcript_text
 
-# this function is to insert the XML doctype declaration at the beginning of the file
-def insert_xml_start(in_file):
-	with open(in_file, "r") as original:
-		data = original.read()
-	with open(in_file, "w") as modified:
-		modified.write('<?xml version="1.0" encoding="UTF-8"?>\n' + data)
-	return modified
+# regex to remove (digits):
+# /\W\d+\W/g
 
-# this function is to insert a disclaimer into each file that we make no guarantees about transcription quality
-def insert_disclaimer(in_file):
-	with open(in_file, "r") as original:
-		data = original.read()
-	with open(in_file, "w") as disclaimed:
-		disclaimed.write('<disclaimer>These transcripts were created by a software program; we make no guarantees as to the quality of the output. We know some of the words are incorrect.</disclaimer>' + data)
-	return disclaimed
+def iterator(in_file):
+	root = etree.Element('cues')
+	count = 0
+	start_time = 0
+	end_time = 0
+	for line in in_file:
+		if line[0].isalpha():
+			split_vals = line.split()
+			if count == 0: # for the first word
+				transcript_words = [] # start a new list of words
+				start_time = (split_vals[1]) # grab the start time of the first word
+				transcript_words.append(split_vals[0]) # save the first word to the list
+				count += 1
+			elif count == 6: # for the sixth word	
+				end_time = (split_vals[2]) # grab the stop time of the last word
+				transcript_words.append(split_vals[0]) # save the last word to the list
+				create_cues(root, start_time, end_time, " ".join(transcript_words)) # assemble the cue
+				count = 0 # reset the count
+			else:
+				transcript_words.append(split_vals[0]) # save the intervening words to the list
+				count += 1
 
-# this function is to divide the transcript into 6-word chunks to make reading and scrolling easier
-def xml_chunks(in_file):
-	with open(in_file, "r") as original:
-		data = original.read()
-	with open(in_file, "w") as chunked:
-		# rewind? index[0]? split? tell python to start at the beginning of the transcription text
-		count = 0
-		while count < 6:
-			count += 1
-		chunked.write('\n')
-		# repeat every six lines -- for x in range?
+	tree = etree.ElementTree(root)		
+	tree.write('output.xml', pretty_print=True, xml_declaration=True)
 
-# maybe this needs to be its own function as well?
-def find_xml():
-	xml_output = []
-	for files in os.listdir(folder):
-		input_xml = os.path.join(folder, files)
-		if '.xml' in files:
-			start_filename = os.path.splitext(files)[0]
-			xml_output_fn = os.path.join(folder, start_filename + '_transcript.xml')
-			xml_output.append(xml_output_fn)
-		else:
-			pass
-	return xml_output
-
-# I think this is where I start chaining function calls in reverse order
-insert_xml_start(xml_output)
-
+# root = create_root('test_xml.xml')
+iterator(open('test_xml.xml'))
