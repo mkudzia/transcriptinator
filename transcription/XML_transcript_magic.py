@@ -1,21 +1,35 @@
 # transcription/XML_transcript_magic.py
 
-
 from lxml import etree as etree
 import re
 import os
 
-# this is now wrong because we made subfolders
-folder = 'mp3s'
+path = '/path/to/your/mp3s/'
 
-for files in os.listdir(folder):
-	input_file = os.path.join(folder, files)
-	for eachfile in files:
-		iterator(open(input_file))
-		
-		filestart = os.path.splitext(files)[0]
-		out_file = filestart + 'transcription.xml'
+# this is still not working, and it's producing weird output
+# print statements are for troubleshooting
+def folder_name(path):
+	for folders in os.listdir(path):
+		folderstart = path.split('/')[5]
+		# print folderstart
+		folder = folderstart + folders
+		# print folder
+		if os.path.isdir(folders):
+			return folder
+		else:
+			pass
 
+def file_names(folder):
+	for files in os.listdir(folder):
+		input_file = os.path.join(folder, files)
+		for eachfile in files:
+			iterator(open(input_file))
+			
+			filestart = os.path.splitext(files)[0]
+			out_file = filestart + 'transcription.xml'
+
+	return filestart
+	return out_file
 
 def create_root(in_file):
 	root = etree.Element('cues')
@@ -23,7 +37,9 @@ def create_root(in_file):
 	disclaimer.text = 'These transcripts were created by a software program; we make no guarantees as to the quality of the output. We know some of the words are incorrect.'
 	return root
 
-# call this inside iterator?
+def remove_numbers(text_string):
+	return re.sub(r'\W\d+\W', '', text_string)
+
 def create_cues(root, beginning, ending, transcript_text):
 	cue = etree.SubElement(root, 'cue')
 	start = etree.SubElement(cue, 'start')
@@ -33,9 +49,6 @@ def create_cues(root, beginning, ending, transcript_text):
 	start.text = str(beginning)
 	end.text = str(ending)
 	transcript.text = remove_numbers(transcript_text)
-
-def remove_numbers(text_string):
-	return re.sub(r'\W\d+\W', '', text_string)
 
 def iterator(in_file, out_file):
 	root = etree.Element('cues')
@@ -62,5 +75,6 @@ def iterator(in_file, out_file):
 	tree = etree.ElementTree(root)		
 	tree.write(out, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
-# root = create_root('test_xml.xml')
-iterator(open('test_xml.xml'))
+folder_name(path)
+file_names(folder)
+iterator(open(out_file))
