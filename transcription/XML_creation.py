@@ -1,25 +1,30 @@
 from lxml import etree as etree
 import re
 import os
-import os.path
+# import os.path
 import shutil
 
-path = 'mp3s/'
+path = '/Users/kudzia/repos/make_transcripts/transcription/mp3s/'
+# folder = 'a'
 
 # this is still not working, and it's producing weird output
 # print statements are for troubleshooting
 def make_folders(path):
-	for mp3_files in os.listdir(path):
-		if mp3_files.endswith('.mp3'):
-			folder = os.path.splitext(mp3_files)[0]
-			file_loc = os.path.join(path, mp3_files)
-			return folder
+	for files in os.listdir(path):
+		if files.endswith('.mp3'):
+			new_folder = os.path.splitext(files)[0]
+			filepath = path.split('/')[5]
+			dirname = new_folder
+			file_loc = os.path.join(path, files)
+			folder = path + dirname
 
 			if os.path.isdir(folder):
 				shutil.copy2(file_loc, folder)
 			else:
 				os.makedirs(folder)
 				shutil.copy2(file_loc, folder)
+		return folder
+		file_names(folder)
 
 def file_names(folder):
 	for files in os.listdir(folder):
@@ -32,6 +37,12 @@ def file_names(folder):
 
 	return filestart
 	return out_file
+
+	iterator(open(out_file))
+
+	in_file = out_file
+	return in_file
+	create_root(in_file)
 
 def create_root(in_file):
 	root = etree.Element('cues')
@@ -78,5 +89,3 @@ def iterator(in_file, out_file):
 	tree.write(out, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
 make_folders(path)
-file_names(folder)
-iterator(open(out_file))
