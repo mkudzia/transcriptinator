@@ -1,21 +1,25 @@
 from lxml import etree as etree
 import re
 import os
+import os.path
+import shutil
 
-path = '/path/to/your/mp3s/'
+path = 'mp3s/'
 
 # this is still not working, and it's producing weird output
 # print statements are for troubleshooting
 def make_folders(path):
-	for folders in os.listdir(path):
-		folderstart = path.split('/')[5]
-		# print folderstart
-		folder = folderstart + folders
-		# print folder
-		if os.path.isdir(folders):
+	for mp3_files in os.listdir(path):
+		if mp3_files.endswith('.mp3'):
+			folder = os.path.splitext(mp3_files)[0]
+			file_loc = os.path.join(path, mp3_files)
 			return folder
-		else:
-			pass
+
+			if os.path.isdir(folder):
+				shutil.copy2(file_loc, folder)
+			else:
+				os.makedirs(folder)
+				shutil.copy2(file_loc, folder)
 
 def file_names(folder):
 	for files in os.listdir(folder):
