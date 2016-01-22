@@ -23,8 +23,7 @@ def make_folders(path):
 			else:
 				os.makedirs(folder)
 				shutil.copy2(file_loc, folder)
-		return folder
-		file_names(folder)
+	file_names(folder)
 
 def file_names(folder):
 	for files in os.listdir(folder):
@@ -37,8 +36,6 @@ def file_names(folder):
 
 	return filestart
 	return out_file
-
-	iterator(open(out_file))
 
 	in_file = out_file
 	return in_file
