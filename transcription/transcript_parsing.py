@@ -5,8 +5,10 @@ import re
 
 output_file_trns = 'only_transcript.txt'
 output_file_time = 'only_timestamp.txt'
+# this is the folder you're keeping your source audio files in
 folder = 'mp3s'
-path = '/path/to/your/mp3/files/'
+# this is the whole file path to the mp3 folder
+path = '/path/to/your/mp3s'
 
 
 def create_cues(root, beginning, ending, transcript_text):
