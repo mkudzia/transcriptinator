@@ -6,7 +6,7 @@ import re
 output_file_trns = 'only_transcript.txt'
 output_file_time = 'only_timestamp.txt'
 folder = 'mp3s'
-path = '/Users/kudzia/repos/make_transcripts/transcription/mp3s/'
+path = '/path/to/your/mp3/files/'
 
 
 def create_cues(root, beginning, ending, transcript_text):
@@ -74,7 +74,6 @@ def iterator(in_file):
                     # save the intervening words to the list
                     transcript_words.append(split_vals[0])
                     count += 1
-
 
     tree = etree.ElementTree(root)
     tree.write(out_file, pretty_print=True,
