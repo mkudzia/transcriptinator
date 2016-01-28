@@ -1,3 +1,7 @@
 # Untracked files: 
 
 .DS_Store
+.*
+!/.gitignore
+transcription/mp3s/
+
