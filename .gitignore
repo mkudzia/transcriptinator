@@ -1,3 +1,5 @@
 # Untracked files: 
 
 .DS_Store
+.*
+!/.gitignore
