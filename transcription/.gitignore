@@ -1,5 +1,5 @@
 DB23703/
 DB32701/
 mp3s/
-.*
+.idea
 !/.gitignore
