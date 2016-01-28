@@ -7,7 +7,8 @@ This script also assumes you're getting a transcript from [audiogrep](https://gi
 
 Audiogrep requires [pip](https://pip.pypa.io/en/stable/installing/), [ffmpeg](http://ffmpeg.org/), and [pocketsphinx](http://cmusphinx.sourceforge.net/). DISCLAIMER: the audiogrep [installation instructions](https://github.com/antiboredom/audiogrep/blob/master/README.md) in general assume you're using a mac. 
 
-Finally, this script uses Python 3. If you have 2.x installed on your machine, you can also install Python3; see instructions. To use this script, use the command ```python3``` rather than ```python```.
+Finally, this script uses [Python 3](https://www.python.org/downloads/). If you have 2.x installed on your machine, you can also install Python3; there are lots of instructions on the internet about how to do this, mostly using virtual environments. Because instructions vary depending on what OS you're using, use your judgement about which ones to use. 
+To use this script (assuming 2.x is your primary version of Python), use the command ```python3``` rather than ```python```.
 
 ## Creating Transcripts ##
 
