@@ -7,8 +7,9 @@ This script also assumes you're getting a transcript from [audiogrep](https://gi
 
 Audiogrep requires [pip](https://pip.pypa.io/en/stable/installing/), [ffmpeg](http://ffmpeg.org/), and [pocketsphinx](http://cmusphinx.sourceforge.net/). DISCLAIMER: the audiogrep [installation instructions](https://github.com/antiboredom/audiogrep/blob/master/README.md) in general assume you're using a mac. 
 
-Finally, you'll need [Python 3](https://www.python.org/downloads/) and [lxml](http://lxml.de/installation.html) to run this script. If you have 2.x installed on your machine, you can also install Python3; there are lots of instructions on the internet about how to do this, mostly using virtual environments. Because instructions vary depending on what OS you're using, use your judgement about which instructions to use. 
-To use this script (assuming 2.x is your primary version of Python), use the command ```python3``` rather than ```python```. Likewise, to install lxml, try typing ```python3 -m pip install lxml``` -- this should let you install lxml in a way that it will work with python 3.
+You'll need [Python 3](https://www.python.org/downloads/) and [lxml](http://lxml.de/installation.html) to run this script (see lxml install instructions in the next paragraph). If you have Python 2.x installed on your machine, you can also install Python 3 to run alongside it; there are lots of instructions on the internet about how to do this. Because instructions vary depending on what OS you're using, use Google and your judgement to decide which instructions to use. 
+
+To use this script (assuming 2.x is your primary version of Python), use the command ```python3``` rather than ```python```. Likewise, to install lxml, try typing ```python3 -m pip install lxml``` -- this should let you install lxml in a way that it will work with Python 3.
 
 You should be all set to create transcripts at this point.
 
