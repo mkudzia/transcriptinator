@@ -29,6 +29,7 @@ audiogrep --input filename.mp3 --transcribe
 ```
 where "filename" is the name of the file you want to transcribe.
 * Download make_transcripts and then copy the folder with you mp3s into ```make_transcripts/transcription```
+* Open ```transcript_parsing.py``` in your preferred text editor and change the ```path``` variable (on line 13) that says "path/to/your/mp3s" to the actual filepath you'll be using
 * Navigate to ```transcription``` using the command line and then type ``python3 transcript_parsing.py```
 
 You should get derivative folders for each audio recording, containing:
