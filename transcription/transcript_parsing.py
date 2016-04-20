@@ -18,6 +18,7 @@ def create_cues(root, beginning, ending, transcript_text):
     start = etree.SubElement(cue, 'start')
     end = etree.SubElement(cue, 'end')
     transcript = etree.SubElement(cue, 'transcript')
+    speaker = etree.SubElement(cue, 'Different Speaker')
 
     start.text = str(beginning)
     end.text = str(ending)
