@@ -7,8 +7,11 @@ This script also assumes you're getting a transcript from [audiogrep](https://gi
 
 Audiogrep requires [pip](https://pip.pypa.io/en/stable/installing/), [ffmpeg](http://ffmpeg.org/), and [pocketsphinx](http://cmusphinx.sourceforge.net/). DISCLAIMER: the audiogrep [installation instructions](https://github.com/antiboredom/audiogrep/blob/master/README.md) in general assume you're using a mac. 
 
-Finally, this script uses [Python 3](https://www.python.org/downloads/). If you have 2.x installed on your machine, you can also install Python3; there are lots of instructions on the internet about how to do this, mostly using virtual environments. Because instructions vary depending on what OS you're using, use your judgement about which ones to use. 
-To use this script (assuming 2.x is your primary version of Python), use the command ```python3``` rather than ```python```.
+You'll need [Python 3](https://www.python.org/downloads/) and [lxml](http://lxml.de/installation.html) to run this script (see lxml install instructions in the next paragraph). If you have Python 2.x installed on your machine, you can also install Python 3 to run alongside it; there are lots of instructions on the internet about how to do this. Because instructions vary depending on what OS you're using, use Google and your judgement to decide which instructions to use. 
+
+To use this script (assuming 2.x is your primary version of Python), use the command ```python3``` rather than ```python```. Likewise, to install lxml, try typing ```python3 -m pip install lxml``` -- this should let you install lxml in a way that it will work with Python 3.
+
+You should be all set to create transcripts at this point.
 
 ## Creating Transcripts ##
 
@@ -18,7 +21,7 @@ Once you have audiogrep and its dependencies installed, you'll follow several st
 ```
 audiogrep --input path/to/*.mp3 --transcribe
 ```
-This will transcribe all the audio files in a given directory. Budget some time for this; each transcript will take less than the total time of the audio recording, but could take up to half as long. In general, if you have a lot of audio files, expect that this step will be lengthy.
+This will transcribe all the audio files in a given directory. Budget some time for this; each transcript will take less than the total time of the audio recording, but could take up to half as long. In general, if you have lots of audio files, expect that this step will be lengthy.
 * To transcribe one file at a time, use ```cd``` to get to the folder containing the audio files, and then:
 
 ```
@@ -26,6 +29,7 @@ audiogrep --input filename.mp3 --transcribe
 ```
 where "filename" is the name of the file you want to transcribe.
 * Download make_transcripts and then copy the folder with you mp3s into ```make_transcripts/transcription```
+* Open ```transcript_parsing.py``` in your preferred text editor and change the ```path``` variable (on line 13) that says "path/to/your/mp3s" to the actual filepath you'll be using
 * Navigate to ```transcription``` using the command line and then type ``python3 transcript_parsing.py```
 
 You should get derivative folders for each audio recording, containing:
