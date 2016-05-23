@@ -39,6 +39,7 @@ You should get derivative folders for each audio recording, containing:
 * a derivative .txt file with just text
 * a derivative .xml file with timestamp information
 * a structured XML document (filename_transcript.xml) for use with the Islandora Oral Histories module
+* a VTT caption file (filename_vtt.txt) for use with the Islandora Oral Histories module
 
 ## Use with Islandora ##
 The XML transcript output is intended to fit the [Islandora Oral Histories Module](https://github.com/digitalutsc/islandora_solution_pack_oralhistories).
@@ -49,3 +50,13 @@ The Oral Histories Module has the following dependencies (per their github page)
 * [Islandora Video Solution Pack](https://github.com/Islandora/islandora_solution_pack_video)
 * [Islandora Audio Solution Pack](https://github.com/Islandora/islandora_solution_pack_audio)
 * [Transcripts UI](https://github.com/Islandora/islandora_solution_pack_audio)
+
+Once you've created the derivatives: 
+* Navigate to ingestd3.lib.msu.edu 
+* Choose the relevant collection name from the "Ingest" drop-down menu
+* Enter the namespace (use the collection name and a semi-colon; see individual collection docs for details)
+* Choose the relevant folder containing derivatives for ingest using the "path to ingest" drop-down
+* If desired, choose the "ingest only new" or "replace metadata" option
+* Click the "submit" button
+* You should see a message telling you your job has been submitted 
+   * If you click the button to see your job, wait a moment and then re-load the screen to see the true status of your job (it takes a moment to get started)
