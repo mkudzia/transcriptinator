@@ -7,9 +7,9 @@ import re
 from datetime import timedelta
 
 # this is the folder you're keeping your source audio files in
-folder = 'WOSL-Ingest'
+folder = '/WOSL-Ingest'
 # this is the whole file path to the mp3 folder 
-path = '/VOLUMES/fedcom_ingest/WOSL-Ingest/'
+path = '/VOLUMES/fedcom_ingest/WOSL-Ingest'
 
 
 def create_cues(root, beginning, ending, transcript_text):
@@ -94,6 +94,7 @@ def generate_caption(start, end, text):
 
 def update_time_format(time):
     """Change time format from s.ss to hh:mm:ss.ss.
+    * Megan's note: should be hh:mm:ss.sss
 
     args:
         time(str): time in s.ss format
