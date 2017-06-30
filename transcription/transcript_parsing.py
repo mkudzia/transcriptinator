@@ -6,10 +6,13 @@ from lxml import etree as etree
 import re
 from datetime import timedelta
 
-# this is the folder you're keeping your source audio files in
-folder = '/transcription/mp3s'
-# this is the whole file path to the mp3 folder 
-path = '/Users/kudzia/repos/make_transcripts/transcription/mp3s'
+'''this is the folder you're keeping your source audio files in; replace
+if you're using a different audio file folder name'''
+folder = '/mp3s'
+
+'''this is the whole file path to the source audio file folder; replace
+to match your circumstances '''
+path = 'path/to/your/mp3/folder'
 
 
 def create_cues(root, beginning, ending, transcript_text):
