@@ -7,9 +7,9 @@ import re
 from datetime import timedelta
 
 # this is the folder you're keeping your source audio files in
-folder = '/WOSL-Ingest'
+folder = '/transcription/mp3s'
 # this is the whole file path to the mp3 folder 
-path = '/VOLUMES/fedcom_ingest/WOSL-Ingest'
+path = '/Users/kudzia/repos/make_transcripts/transcription/mp3s'
 
 
 def create_cues(root, beginning, ending, transcript_text):
@@ -106,8 +106,9 @@ def update_time_format(time):
 
     hours_format = str(int(hours)).zfill(2)
     minutes_format = str(int(minutes)).zfill(2)
-    seconds_format = str(round(seconds, 3)).zfill(6)
-    return "{0}:{1}:{2}".format(hours_format, minutes_format, seconds_format)
+    seconds_format = str(int(seconds)).zfill(2)
+    milliseconds_format = str(int(milliseconds)).zfill(3)
+    return "{0}:{1}:{2}.{3}".format(hours_format, minutes_format, seconds_format, milliseconds_format)
 
 
 def write_vtt(cue_string, out):
